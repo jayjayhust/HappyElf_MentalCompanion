@@ -1,8 +1,9 @@
 # InternStudio上部署记录
 
 ## 安装依赖
-```
-bash /root/share/install_conda_env_internlm_base.sh final-project  # 执行该脚本文件来安装项目实验环境
+```bash
+# 执行该脚本文件来安装项目实验环境
+bash /root/share/install_conda_env_internlm_base.sh final-project  
 
 # 激活环境
 conda activate final-project
@@ -10,6 +11,7 @@ conda activate final-project
 # 升级pip
 python -m pip install --upgrade pip
 
+# 安装依赖
 pip install modelscope==1.9.5
 pip install transformers==4.35.2
 pip install streamlit==1.24.0
@@ -19,7 +21,7 @@ pip install accelerate==0.24.1
 
 ## 模型下载
 - LLM：InternLM-Chat-7B
-```
+```python
 # https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm2-chat-7b/summary
 # https://github.com/InternLM/tutorial/blob/main/helloworld/hello_world.md#22-%E6%A8%A1%E5%9E%8B%E4%B8%8B%E8%BD%BD
 
@@ -40,7 +42,7 @@ print('*' * 100)
 print(response)
 ```
 - 向量模型：sentence-transformers
-```
+```python
 # https://github.com/InternLM/tutorial/blob/main/langchain/readme.md#13-langchain-%E7%9B%B8%E5%85%B3%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE
 
 # pip install -U huggingface_hub
@@ -54,7 +56,7 @@ os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 os.system('huggingface-cli download --resume-download sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 --local-dir /root/data/model/sentence-transformer')
 ```
 - 下载 NLTK 相关资源：https://github.com/InternLM/tutorial/blob/main/langchain/readme.md#14-%E4%B8%8B%E8%BD%BD-nltk-%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90
-```
+```bash
 cd /root
 git clone https://gitee.com/yzy0612/nltk_data.git  --branch gh-pages
 cd nltk_data
