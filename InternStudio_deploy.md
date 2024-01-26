@@ -64,3 +64,11 @@ unzip punkt.zip
 cd ../taggers
 unzip averaged_perceptron_tagger.zip
 ```
+
+## 数据集准备
+
+
+## 模型微调（XTuner）
+
+
+## 模型部署（LMDeploy）
