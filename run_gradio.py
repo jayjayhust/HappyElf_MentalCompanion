@@ -7,6 +7,15 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 
 def load_chain():
+    """
+    加载问答链(RAG)
+    
+    Args:
+        无
+    
+    Returns:
+        RetrievalQA: 问答链实例
+    """
     # 加载问答链
     # 定义 Embeddings
     embeddings = HuggingFaceEmbeddings(model_name="/root/data/model/sentence-transformer")
