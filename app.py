@@ -7,6 +7,7 @@
 
 
 
+
 from langchain.vectorstores import Chroma
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 import os
@@ -15,6 +16,15 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 
 def load_chain():
+    """
+    加载问答链(RAG)
+    
+    Args:
+        无
+    
+    Returns:
+        RetrievalQA: 问答链实例
+    """
     # 加载问答链
     # 定义 Embeddings
     embeddings = HuggingFaceEmbeddings(model_name="/root/data/model/sentence-transformer")
@@ -75,6 +85,7 @@ import gradio as gr
 
 # 实例化核心功能对象
 model_center = Model_center()
+
 # 创建一个 Web 界面
 block = gr.Blocks()
 with block as demo:
@@ -115,5 +126,6 @@ with block as demo:
     2. 使用中如果出现异常，将会在文本输入框进行展示，请不要惊慌。 <br>
     """)
 gr.close_all()
+
 # 直接启动
 demo.launch()
