@@ -44,7 +44,7 @@ def get_text(dir_path):
 
 # 目标文件夹(linux)
 tar_dir = [
-    "/root/data/mental_health"
+    "/root/final-project/datasets/mental_health"
 ]
 # # 目标文件夹(winodws)
 # tar_dir = [
@@ -62,7 +62,7 @@ text_splitter = RecursiveCharacterTextSplitter(
 split_docs = text_splitter.split_documents(docs)
 
 # 加载开源词向量模型(linux)
-embeddings = HuggingFaceEmbeddings(model_name="/root/data/model/sentence-transformer")
+embeddings = HuggingFaceEmbeddings(model_name="/root/model/sentence-transformer")
 
 # 构建向量数据库
 # 定义持久化路径(linux)

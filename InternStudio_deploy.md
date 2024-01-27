@@ -1,4 +1,7 @@
-# InternStudio上部署记录
+# InternStudio上对InternLM2-Chat-7B微调及部署记录
+
+## InternStudio测试环境
+测试机地址：https://studio.intern-ai.org.cn/console/instance
 
 ## 安装依赖
 ```bash
@@ -17,6 +20,13 @@ pip install transformers==4.35.2
 pip install streamlit==1.24.0
 pip install sentencepiece==0.1.99
 pip install accelerate==0.24.1
+
+pip install langchain==0.0.292
+pip install gradio==4.4.0
+pip install chromadb==0.4.15
+pip install sentence-transformers==2.2.2
+pip install unstructured==0.10.30
+pip install markdown==3.3.7
 ```
 
 ## 模型下载

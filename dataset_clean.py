@@ -2,7 +2,7 @@
 
 import json
 
-file_path = './datasets/mental_health/PsyQA_example.json'  # 原始数据集
+file_path = './datasets/mental_health/original/PsyQA_example.json'  # 原始数据集
 file_after_clean_path = './datasets/mental_health/PsyQA_example_cleaned.json'  # 输出的json文件数据集路径
 file_after_clean_txt_path = './datasets/mental_health/PsyQA_example_cleaned.txt'  # 输出的txt文件数据集路径
 
