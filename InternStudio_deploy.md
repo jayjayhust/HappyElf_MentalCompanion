@@ -1,4 +1,4 @@
-# InternStudio上对InternLM2-Chat-7B微调及部署记录
+# InternStudio上对InternLM2-Chat-7B微调及(量化)部署记录
 
 ## InternStudio测试环境
 测试机地址：https://studio.intern-ai.org.cn/console/instance
@@ -30,7 +30,7 @@ pip install markdown==3.3.7
 ```
 
 ## 模型下载
-- LLM：InternLM-Chat-7B
+- LLM：InternLM2-Chat-7B
 ```python
 # https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm2-chat-7b/summary
 # https://github.com/InternLM/tutorial/blob/main/helloworld/hello_world.md#22-%E6%A8%A1%E5%9E%8B%E4%B8%8B%E8%BD%BD
@@ -78,9 +78,12 @@ unzip averaged_perceptron_tagger.zip
 ```
 
 ## 数据集准备
-
+PsyQA做清洗、向量化、本地持久化
 
 ## 模型微调（XTuner）
+https://github.com/InternLM/tutorial/blob/main/xtuner/README.md
 
 
-## 模型部署（LMDeploy）
+## 模型量化部署（LMDeploy）
+https://github.com/InternLM/tutorial/blob/main/lmdeploy/lmdeploy.md
+
