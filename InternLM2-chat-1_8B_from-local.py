@@ -1,6 +1,9 @@
 # https://huggingface.co/internlm/internlm2-chat-1_8b
 # 20k文字的输入？待测试~
 
+# issue:ModuleNotFoundError: No module named 'transformers_modules.'
+# solution: pip install transformers==4.36.2
+
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
