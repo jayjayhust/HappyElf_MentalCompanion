@@ -1,4 +1,5 @@
 /datasets/mental_health/original/full_PsyQA/PsyQA_full.json
 /datasets/mental_health/original/full_PsyQA/PsyQA_generation_split/large_span_enstra_PsyQA_train.json
+PsyQA_full_train_converted.json
 model/
 *.sh
