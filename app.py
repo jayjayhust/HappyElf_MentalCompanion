@@ -114,8 +114,8 @@ class Model_center():
         dialogue_history = get_dialogue_history(dialogue_history_list=self.dialogue_history_list)
         instruction = get_instruction(dialogue_history=dialogue_history)  # 生成提示词
         # 加载自定义 LLM
-        # llm = LLM(model_path = "/root/model/Shanghai_AI_Laboratory/internlm2-chat-7b")
-        llm = LLM(model_path = "./model/internlm2-chat-1_8b")
+        # llm = LLM(model_path = "/root/model/Shanghai_AI_Laboratory/internlm2-chat-7b")  # intern-studio pc: download to linux
+        llm = LLM(model_path = "./model/internlm2-chat-1_8b")  # local pc: download to windows
         response = llm.generate(instruction)
         print(f'咨询师：{response}')
         self.dialogue_history_list.append({  # 聊天记录中附加大模型的返回结果
