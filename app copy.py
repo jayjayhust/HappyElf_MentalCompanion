@@ -6,10 +6,12 @@
 # 4.应用默认在 7860 端口启动，请不要占用或改写个人应用的启动端口
 
 
+
+
 from langchain.vectorstores import Chroma
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 import os
-from LLM import InternLM_LLM as LLM
+from LLM import InternLM_LLM
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 
@@ -56,27 +58,6 @@ def load_chain():
     
     return qa_chain
 
-def get_dialogue_history(dialogue_history_list: list):   
-    dialogue_history_tmp = []
-
-    for item in dialogue_history_list:
-        if item['role'] == 'counselor':
-            text = '咨询师：'+ item['content']
-        else:
-            text = '来访者：'+ item['content']
-        dialogue_history_tmp.append(text)
-
-    dialogue_history = '\n'.join(dialogue_history_tmp)
-    
-    return dialogue_history + '\n' + '咨询师：'
-
-def get_instruction(dialogue_history):
-    instruction = f'''现在你扮演一位专业的心理咨询师，你具备丰富的心理学和心理健康知识。你擅长运用多种心理咨询技巧，例如认知行为疗法原则、动机访谈技巧和解决问题导向的短期疗法。以温暖亲切的语气，展现出共情和对来访者感受的深刻理解。以自然的方式与来访者进行对话，避免过长或过短的回应，确保回应流畅且类似人类的对话。提供深层次的指导和洞察，使用具体的心理概念和例子帮助来访者更深入地探索思想和感受。避免教导式的回应，更注重共情和尊重来访者的感受。根据来访者的反馈调整回应，确保回应贴合来访者的情境和需求。请为以下的对话生成一个回复。
-
-对话：
-{dialogue_history}'''
-
-    return instruction
 
 class Model_center():
     """
@@ -84,8 +65,7 @@ class Model_center():
     """
     def __init__(self):
         # 构造函数，加载检索问答链
-        # self.chain = load_chain()
-        self.dialogue_history_list = []
+        self.chain = load_chain()
 
     def qa_chain_self_answer(self, question: str, chat_history: list = []):
         """
@@ -99,32 +79,7 @@ class Model_center():
             return "", chat_history
         except Exception as e:
             return e, chat_history
-    
-    def clear_chat_history(self):
-        """
-        清空聊天历史记录
-        """
-        self.dialogue_history_list = []
 
-    def direct_answer(self, prompt: str, chat_history: list = []):
-        self.dialogue_history_list.append({  # 聊天记录中附加用户的输入
-            'role': 'client',
-            'content': prompt
-        })
-        dialogue_history = get_dialogue_history(dialogue_history_list=self.dialogue_history_list)
-        instruction = get_instruction(dialogue_history=dialogue_history)  # 生成提示词
-        # 加载自定义 LLM
-        # llm = LLM(model_path = "/root/model/Shanghai_AI_Laboratory/internlm2-chat-7b")
-        llm = LLM(model_path = "./model/internlm2-chat-1_8b")
-        response = llm.generate(instruction)
-        print(f'咨询师：{response}')
-        self.dialogue_history_list.append({  # 聊天记录中附加大模型的返回结果
-            'role': 'counselor',
-            'content': response
-        })
-
-        chat_history.append((prompt, response))
-        return "", chat_history
 
 import gradio as gr
 
@@ -137,8 +92,8 @@ with block as demo:
     with gr.Row(equal_height=True):   
         with gr.Column(scale=15):
             # 展示的页面标题
-            gr.Markdown("""<h1><center>InternLM2</center></h1>
-                <center>书生浦语·快乐小精灵</center>
+            gr.Markdown("""<h1><center>InternLM</center></h1>
+                <center>书生浦语</center>
                 """)
 
     with gr.Row():
@@ -161,17 +116,14 @@ with block as demo:
                 clear = gr.ClearButton(
                     components=[chatbot], value="Clear console")
                 
-        # 设置按钮的点击事件。当点击时，调用上面定义的 direct_answer 函数，并传入用户的消息和聊天历史记录，然后更新文本框和聊天机器人组件。
-        db_wo_his_btn.click(model_center.direct_answer, 
+        # 设置按钮的点击事件。当点击时，调用上面定义的 qa_chain_self_answer 函数，并传入用户的消息和聊天历史记录，然后更新文本框和聊天机器人组件。
+        db_wo_his_btn.click(model_center.qa_chain_self_answer, 
                             inputs=[msg, chatbot], 
                             outputs=[msg, chatbot])
 
     gr.Markdown("""提醒：<br>
     1. 初始化数据库时间可能较长，请耐心等待。
-    2. 使用中如果出现异常，将会在文本输入框进行展示，请不要惊慌。
-    3. 心理互助问答，非心理咨询，仅为心理知识分享。
-    4. 数据来源于壹心理清洗，壹心理已过滤任何发布者信息部分，仅使用文本。
-    5. 因提问者信息有限，回答为模糊匹配，并非适合每个人，仅供参考。 <br>
+    2. 使用中如果出现异常，将会在文本输入框进行展示，请不要惊慌。 <br>
     """)
 gr.close_all()
 

@@ -27,7 +27,18 @@ class InternLM_LLM(LLM):
         """
         
         messages = [(system_prompt, '')]
-        response, history = self.model.chat(self.tokenizer, prompt , history=messages)
+        response, history = self.model.chat(self.tokenizer, prompt, history=messages)
+        return response
+    
+    def generate(self, prompt : str, stop: Optional[List[str]] = None,
+                run_manager: Optional[CallbackManagerForLLMRun] = None,
+                **kwargs: Any):
+        # 重写调用函数
+        system_prompt = """你是一个心理医生小助手，负责倾听用户的心理问题并给出建议.
+        """
+        
+        messages = [(system_prompt, '')]
+        response, history = self.model.chat(self.tokenizer, prompt, history=messages)
         return response
         
     @property
