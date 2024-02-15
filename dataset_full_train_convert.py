@@ -43,6 +43,7 @@ def dataset_join_and_convert(file_1_path, file_2_path, file_converted_path):
         if "keywords"  in record:
             del record["keywords"]
         
+        # 新增字段 instruction
         record['instruction'] = "现在你扮演一位专业的心理咨询师，你具备丰富的心理学和心理健康知识。" + \
         "你擅长运用多种心理咨询技巧，例如认知行为疗法原则、动机访谈技巧和解决问题导向的短期疗法。" + \
         "以温暖亲切的语气，展现出共情和对来访者感受的深刻理解。以自然的方式与来访者进行对话，" + \
@@ -51,6 +52,7 @@ def dataset_join_and_convert(file_1_path, file_2_path, file_converted_path):
         "更注重共情和尊重来访者的感受。根据来访者的反馈调整回应，确保回应贴合来访者的情境和需求。请为以下的对话生成一个回复。" + \
         "\n\n对话：\n来访者：{}。".format(record['question']) + \
         "\n咨询师："
+        # 新增字段 output
         record['output'] = record['answers'][0]['answer_text']
         # # 创建一个映射，将旧键映射到新键
         # key_map = {'question': 'query', 'answers': 'outputs', 'answer_text': 'text'}
