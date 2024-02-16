@@ -138,7 +138,9 @@ with block as demo:
             # 展示的页面标题
             gr.Markdown("""<h1><center>Happy Little Elf</center></h1>
                 <center>快乐小精灵</center>
-                <center><img src="https://github.com/jayjayhust/HappyElf_MentalCompanion/blob/main/assets/images/happy_little_elf.jpg" width="200" height="200"></center>
+                <br>
+                <center><img src="https://raw.githubusercontent.com/jayjayhust/HappyElf_MentalCompanion/main/assets/images/happy_little_elf.jpg
+" width="120" height="120"></center>
                 """)
             # gr.Markdown("![Image here](https://github.com/jayjayhust/HappyElf_MentalCompanion/blob/main/assets/images/happy_little_elf.jpg)")
             # gr.Markdown("![Image here](/assets/images/happy_little_elf.jpg)")
