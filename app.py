@@ -139,7 +139,7 @@ with block as demo:
             gr.Markdown("""<h1><center>Happy Little Elf</center></h1>
                 <center>快乐小精灵</center>
                 <br>
-                <center><img src="https://raw.githubusercontent.com/jayjayhust/HappyElf_MentalCompanion/main/assets/images/happy_little_elf.jpg
+                <center><img src="https://raw.githubusercontent.com/jayjayhust/HappyElf_MentalCompanion/main/assets/images/happy_little_elf-round.png
 " width="120" height="120"></center>
                 """)
             # gr.Markdown("![Image here](https://github.com/jayjayhust/HappyElf_MentalCompanion/blob/main/assets/images/happy_little_elf.jpg)")
@@ -148,7 +148,7 @@ with block as demo:
     with gr.Row():
         with gr.Column(scale=4):
             # 创建一个聊天机器人对象
-            chatbot = gr.Chatbot(height=450, show_copy_button=True)
+            chatbot = gr.Chatbot(height=350, show_copy_button=True)
             # 创建一个文本框组件，用于输入 prompt。
             # Q: 你是谁？
             # Q: 为什么有的时候情绪会突然低落什么也不想做？

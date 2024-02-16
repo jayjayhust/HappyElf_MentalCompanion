@@ -3,6 +3,7 @@ from typing import Any, List, Optional
 from langchain.callbacks.manager import CallbackManagerForLLMRun
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
+import const
 
 class InternLM_LLM(LLM):
     # 基于本地 InternLM 自定义 LLM 类
@@ -23,9 +24,8 @@ class InternLM_LLM(LLM):
                 run_manager: Optional[CallbackManagerForLLMRun] = None,
                 **kwargs: Any):
         # 重写调用函数
-        system_prompt = """你是一个心理医生小助手，负责倾听用户的心理问题并给出建议.
-        """
-        
+        # system_prompt = """你是一个心理医生小助手，负责倾听用户的心理问题并给出建议."""
+        system_prompt = const.CHARACTER_DESCRIPTION
         messages = [(system_prompt, '')]
         response, history = self.model.chat(self.tokenizer, prompt, history=messages)
         return response
