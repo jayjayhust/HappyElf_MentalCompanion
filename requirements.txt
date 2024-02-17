@@ -9,4 +9,5 @@ chromadb==0.4.15
 sentence-transformers==2.2.2
 unstructured==0.10.30
 markdown==3.3.7
-tqdm
+tqdm==4.65.0
+huggingface_hub==0.20.3

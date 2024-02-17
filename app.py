@@ -127,6 +127,11 @@ class Model_center():
 
 import gradio as gr
 
+# 设置环境变量(huggingface 镜像下载)
+os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+# 下载模型
+os.system('huggingface-cli download --resume-download internlm/internlm2-chat-1_8b --local-dir ./model/internlm2-chat-1_8b')
+
 # 实例化核心功能对象
 model_center = Model_center()
 
