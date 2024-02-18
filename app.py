@@ -86,7 +86,8 @@ class Model_center():
         # self.chain = load_chain()
         # 加载自定义 LLM
         # llm = LLM(model_path = "/root/model/Shanghai_AI_Laboratory/internlm2-chat-7b")  # intern-studio pc: download to linux
-        self.llm = LLM(model_path = "./model/internlm2-chat-1_8b")  # local pc: download to windows
+        # self.llm = LLM(model_path = "./model/internlm2-chat-1_8b")  # local pc: download to windows
+        self.llm = LLM(model_path = "./model/internlm2-chat-7b")  # huggingface model hub
         self.dialogue_history_list = []
 
     def qa_chain_self_answer(self, question: str, chat_history: list = []):
@@ -130,7 +131,8 @@ import gradio as gr
 # 设置环境变量(huggingface 镜像下载)
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 # 下载模型
-os.system('huggingface-cli download --resume-download internlm/internlm2-chat-1_8b --local-dir ./model/internlm2-chat-1_8b')
+# os.system('huggingface-cli download --resume-download internlm/internlm2-chat-1_8b --local-dir ./model/internlm2-chat-1_8b')
+os.system('huggingface-cli download --resume-download internlm/internlm2-chat-7b --local-dir ./model/internlm2-chat-7b')
 
 # 实例化核心功能对象
 model_center = Model_center()
@@ -141,14 +143,13 @@ with block as demo:
     with gr.Row(equal_height=True):   
         with gr.Column(scale=15):
             # 展示的页面标题
+            # 图片链接(github)：https://raw.githubusercontent.com/jayjayhust/HappyElf_MentalCompanion/main/assets/images/happy_little_elf-round.png
+            # 图片链接(gitee)：https://gitee.com/hunan_ai_league_jayhust/resource_storage/raw/master/happy_little_elf-round.png
             gr.Markdown("""<h1><center>Happy Little Elf</center></h1>
                 <center>快乐小精灵</center>
                 <br>
-                <center><img src="https://raw.githubusercontent.com/jayjayhust/HappyElf_MentalCompanion/main/assets/images/happy_little_elf-round.png
-" width="120" height="120"></center>
+                <center><img src="https://raw.githubusercontent.com/jayjayhust/HappyElf_MentalCompanion/main/assets/images/happy_little_elf-round.png" width="120" height="120"></center>
                 """)
-            # gr.Markdown("![Image here](https://github.com/jayjayhust/HappyElf_MentalCompanion/blob/main/assets/images/happy_little_elf.jpg)")
-            # gr.Markdown("![Image here](/assets/images/happy_little_elf.jpg)")
 
     with gr.Row():
         with gr.Column(scale=4):
