@@ -81,13 +81,13 @@ class Model_center():
     """
     存储LLM或者检索问答链的对象
     """
-    def __init__(self):
+    def __init__(self, llm_path=None):
         # 构造函数，加载检索问答链
         # self.chain = load_chain()
         # 加载自定义 LLM
         # llm = LLM(model_path = "/root/model/Shanghai_AI_Laboratory/internlm2-chat-7b")  # intern-studio pc: download to linux
         # self.llm = LLM(model_path = "./model/internlm2-chat-1_8b")  # local pc: download to windows
-        self.llm = LLM(model_path = "./model/internlm2-chat-7b")  # huggingface model hub
+        self.llm = LLM(model_path = llm_path)  # huggingface model hub
         self.dialogue_history_list = []
 
     def qa_chain_self_answer(self, question: str, chat_history: list = []):
@@ -130,12 +130,12 @@ import gradio as gr
 
 # 设置环境变量(huggingface 镜像下载)
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
-# 下载模型
+# 先下载模型到本地
 # os.system('huggingface-cli download --resume-download internlm/internlm2-chat-1_8b --local-dir ./model/internlm2-chat-1_8b')
-os.system('huggingface-cli download --resume-download internlm/internlm2-chat-7b --local-dir ./model/internlm2-chat-7b')
+os.system('huggingface-cli download --resume-download internlm/' + const.LLM_NAME + '--local-dir ./model/' + const.LLM_NAME)
 
 # 实例化核心功能对象
-model_center = Model_center()
+model_center = Model_center(llm_path='./model/' + const.LLM_NAME)
 
 # 创建一个 Web 界面
 block = gr.Blocks()
