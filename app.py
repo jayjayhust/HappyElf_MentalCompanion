@@ -9,7 +9,8 @@
 from langchain.vectorstores import Chroma
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 import os
-from LLM import InternLM_LLM as LLM
+from LLM_huggingface import InternLM_LLM as LLM
+# from LLM_modelscope import InternLM_LLM as LLM
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 import const
@@ -81,13 +82,14 @@ class Model_center():
     """
     存储LLM或者检索问答链的对象
     """
-    def __init__(self, llm_path=None):
+    def __init__(self, llm_path=None, cache_path=None):
         # 构造函数，加载检索问答链
         # self.chain = load_chain()
         # 加载自定义 LLM
         # llm = LLM(model_path = "/root/model/Shanghai_AI_Laboratory/internlm2-chat-7b")  # intern-studio pc: download to linux
         # self.llm = LLM(model_path = "./model/internlm2-chat-1_8b")  # local pc: download to windows
         self.llm = LLM(model_path = llm_path)  # huggingface model hub
+        # self.llm = LLM(model_path = llm_path, cache_path=cache_path)  # modelscope model hub
         self.dialogue_history_list = []
 
     def qa_chain_self_answer(self, question: str, chat_history: list = []):
@@ -135,7 +137,8 @@ os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 os.system('huggingface-cli download --resume-download internlm/' + const.LLM_NAME + ' --local-dir ./model/' + const.LLM_NAME)
 
 # 实例化核心功能对象
-model_center = Model_center(llm_path='./model/' + const.LLM_NAME)
+model_center = Model_center(llm_path='./model/' + const.LLM_NAME)  # local path
+# model_center = Model_center(llm_path='Shanghai_AI_Laboratory/' + const.LLM_NAME, cache_path='./model/' + const.LLM_NAME)  # modelscope model hub
 
 # 创建一个 Web 界面
 block = gr.Blocks()
