@@ -132,7 +132,7 @@ import gradio as gr
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 # 先下载模型到本地
 # os.system('huggingface-cli download --resume-download internlm/internlm2-chat-1_8b --local-dir ./model/internlm2-chat-1_8b')
-os.system('huggingface-cli download --resume-download internlm/' + const.LLM_NAME + '--local-dir ./model/' + const.LLM_NAME)
+os.system('huggingface-cli download --resume-download internlm/' + const.LLM_NAME + ' --local-dir ./model/' + const.LLM_NAME)
 
 # 实例化核心功能对象
 model_center = Model_center(llm_path='./model/' + const.LLM_NAME)
