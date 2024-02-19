@@ -138,7 +138,7 @@ os.system('huggingface-cli download --resume-download internlm/' + const.LLM_NAM
 
 # 实例化核心功能对象
 model_center = Model_center(llm_path='./model/' + const.LLM_NAME)  # local path
-# model_center = Model_center(llm_path='Shanghai_AI_Laboratory/' + const.LLM_NAME, cache_path='./model/' + const.LLM_NAME)  # modelscope model hub
+# model_center = Model_center(llm_path='jayhust/' + const.LLM_NAME, cache_path='./model/' + const.LLM_NAME)  # modelscope model hub
 
 # 创建一个 Web 界面
 block = gr.Blocks()
