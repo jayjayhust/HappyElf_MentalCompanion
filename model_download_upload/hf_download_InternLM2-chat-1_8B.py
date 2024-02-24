@@ -8,4 +8,4 @@ import os
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 
 # 下载模型
-os.system('huggingface-cli download --resume-download internlm/internlm2-chat-1_8b --local-dir ./model/internlm2-chat-1_8b')
+os.system('huggingface-cli download --resume-download internlm/internlm2-chat-1_8b --local-dir ../model/internlm2-chat-1_8b')
