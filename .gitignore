@@ -3,3 +3,4 @@
 PsyQA_full_train_converted.json
 model/
 *.sh
+config.json
